@@ -1,4 +1,4 @@
-package com.huoli.Second;
+package com.huoli.Menu;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -9,12 +9,12 @@ import javax.swing.JFrame;
 
 import com.huoli.Index.Index;
 
-public class Second implements ActionListener {
+public class Menu implements ActionListener {
 	
 	private JFrame index;
 	private JButton button;
 	
-	public Second() {
+	public Menu() {
 		index = new JFrame("Second");
 		button = new JButton("·µ»Ø");
 		index.add(button);
@@ -25,6 +25,8 @@ public class Second implements ActionListener {
 		Color background = new Color(42);
 		index.setBackground(background);
 		index.setSize(200, 200);
+
+		index.setLocation(500, 200);
 		index.setVisible(true);
 	}
 	
