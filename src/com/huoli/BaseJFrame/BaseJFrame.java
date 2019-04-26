@@ -12,7 +12,9 @@ public abstract class BaseJFrame extends JFrame implements ActionListener {
 	protected JLayeredPane lay;
 	
 	public BaseJFrame() {
-		
+		this.setLocation(500,200);
+		this.setSize(800,800);
+		this.setResizable(false);
 	}
 	
 	public void run() {
