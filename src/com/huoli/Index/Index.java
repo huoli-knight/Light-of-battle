@@ -27,11 +27,10 @@ public class Index extends BaseJFrame {
 	private JButton exitbutton;
 	private JButton presskeybutton;
 	private JButton imformationbutton;
-	private boolean visible;
 
 	public Index() {
 		super();
-		visible = false;
+		condition = 0;
 		this.setTitle("Light Of Battle");
 		lay = new JLayeredPane();
 		panelmenu = new JPanel();
@@ -62,7 +61,12 @@ public class Index extends BaseJFrame {
 	
 	@Override
 	public void setVisible(boolean vis) {
-		visible = vis;
+		if (vis) {
+			condition = 1;
+		}
+		else {
+			condition = 0;
+		}
 		super.setVisible(vis);
 	}
 	
@@ -70,7 +74,6 @@ public class Index extends BaseJFrame {
 		imageback.setImage(imageback.getImage().getScaledInstance(800, 800, Image.SCALE_DEFAULT));
 	}
 
-	
 	private void setlabelback() {
 		labelback.setSize(800, 800);
 	}
@@ -109,18 +112,29 @@ public class Index extends BaseJFrame {
 		exitbutton.addActionListener(this);
 	}
 	
+	public int getCondition() {
+		return condition;
+	}
+	
+	public void resetCondition() {
+		condition = 0;
+	}
+	
+	@Override
 	public Point getLocation() {
 		return super.getLocation();
 	}
 	
-	public boolean getVisible() {
-		return this.visible;
+	@Override
+	public void setLocation(Point p) {
+		super.setLocation(p);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String state = e.getActionCommand();
 		if (state.equals("开始游戏")) {
+			condition = 2;
 			this.setVisible(false);
 		}
 		if (state.equals("读取存档")) {
