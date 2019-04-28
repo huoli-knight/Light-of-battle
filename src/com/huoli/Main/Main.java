@@ -8,7 +8,7 @@ import com.huoli.Index.Index;
 
 public class Main {
 
-	public static void main(String[] args) throws ConditionException {
+	public static void main(String[] args) {
 		Point p = new Point(500, 200);
 		Index index = new Index();
 		index.run();
@@ -18,37 +18,58 @@ public class Main {
 		firststage.run();
 		while (true) {
 			try {
-				if (!(judgeCondition(index.getCondition()) || judgeCondition(firststage.getCondition()))) {
-					throw new ConditionException();
-				}
-				if (index.getCondition() == 1) {
+				judgeCondition(index.getCondition());
+			} catch (ConditionException e) {
+				boolean dealwith = e.dialogResult();
+				if (dealwith) {
+					index.setVisible(true);
 					firststage.setVisible(false);
 				}
-				if (firststage.getCondition() == 1) {
-					index.setVisible(false);
+				else {
+					System.exit(0);
 				}
-				if (index.getCondition() == 2) {
-					index.resetCondition();
-					p = index.getLocation();
-					firststage.setLocation(p);
-					firststage.setVisible(true);
-				}
-				if (firststage.getCondition() == 2) {
-					firststage.resetCondition();
-					p = firststage.getLocation();
-					index.setLocation(p);
-					index.setVisible(true);
-				}
+			}
+			try {
+				judgeCondition(firststage.getCondition());
 			} catch (ConditionException e) {
-
+				boolean dealwith = e.dialogResult();
+				if (dealwith) {
+					index.setVisible(true);
+					firststage.setVisible(false);
+				}
+				else {
+					System.exit(0);
+				}
+			}
+			if (index.getCondition() == 1) {
+				firststage.setVisible(false);
+			}
+			if (firststage.getCondition() == 1) {
+				index.setVisible(false);
+			}
+			if (index.getCondition() == 2) {
+				index.resetCondition();
+				p = index.getLocation();
+				firststage.setLocation(p);
+				firststage.setVisible(true);
+			}
+			if (firststage.getCondition() == 2) {
+				firststage.resetCondition();
+				p = firststage.getLocation();
+				index.setLocation(p);
+				index.setVisible(true);
 			}
 		}
 	}
 
 	// 判断condition的值是否符合范围
-	private static boolean judgeCondition(int condition) {
-		boolean judge = true;
-		return judge;
+	private static void judgeCondition(int condition) throws ConditionException {
+		for (int i = 0; i < 3; i++) {
+			if (i == condition) {
+				return;
+			}
+		}
+		throw new ConditionException();
 	}
 
 }
