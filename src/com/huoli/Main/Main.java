@@ -24,8 +24,7 @@ public class Main {
 				if (dealwith) {
 					index.setVisible(true);
 					firststage.setVisible(false);
-				}
-				else {
+				} else {
 					System.exit(0);
 				}
 			}
@@ -36,8 +35,7 @@ public class Main {
 				if (dealwith) {
 					index.setVisible(true);
 					firststage.setVisible(false);
-				}
-				else {
+				} else {
 					System.exit(0);
 				}
 			}
@@ -58,6 +56,9 @@ public class Main {
 				p = firststage.getLocation();
 				index.setLocation(p);
 				index.setVisible(true);
+			}
+			if (firststage.getCondition() == 0 && index.getCondition() == 0) {
+				System.exit(0);
 			}
 		}
 	}

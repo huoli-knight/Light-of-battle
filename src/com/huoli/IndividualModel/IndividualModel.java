@@ -12,9 +12,9 @@ public class IndividualModel extends JLabel {
 	 */
 	private static final long serialVersionUID = -7709488188366780720L;
 
-	public IndividualModel(ImageIcon image) {
+	public IndividualModel(ImageIcon image,int x,int y) {
 		this.setLayout(null);
-		this.setSize(50, 50);
+		this.setSize(x, y);
 		this.setIcon(image);
 	}
 	
