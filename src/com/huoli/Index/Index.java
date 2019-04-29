@@ -15,9 +15,12 @@ import javax.swing.JPanel;
 
 import com.huoli.BaseJFrame.BaseJFrame;
 
-@SuppressWarnings("serial")
 public class Index extends BaseJFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7854297246908650828L;
 	private ImageIcon imageback;
 	private JPanel panelmenu;
 	private JPanel panelback;
@@ -71,22 +74,22 @@ public class Index extends BaseJFrame {
 	}
 	
 	private void setimageback() {
-		imageback.setImage(imageback.getImage().getScaledInstance(800, 800, Image.SCALE_DEFAULT));
+		imageback.setImage(imageback.getImage().getScaledInstance(1200, 800, Image.SCALE_DEFAULT));
 	}
 
 	private void setlabelback() {
-		labelback.setSize(800, 800);
+		labelback.setSize(1200, 800);
 	}
 
 	private void setpanelmenu() {
 		panelmenu.setSize(100, 200);
-		panelmenu.setLocation(350, 200);
+		panelmenu.setLocation(550, 200);
 		panelmenu.setBackground(null);
 		panelmenu.setOpaque(false);
 	}
 
 	private void setpanelback() {
-		panelback.setSize(800, 800);
+		panelback.setSize(1200, 800);
 	}
 
 	private void addButton() {

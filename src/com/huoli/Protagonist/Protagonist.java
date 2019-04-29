@@ -1,52 +1,62 @@
 package com.huoli.Protagonist;
 
-import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.ImageIcon;
 
+import com.huoli.IndividualModel.IndividualModel;
 import com.huoli.PersonUnit.PersonUnit;
 
-@SuppressWarnings("serial")
-public class Protagonist extends PersonUnit implements KeyListener{
-	
+public class Protagonist extends PersonUnit implements KeyListener {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1140812889168316062L;
 	private ImageIcon image;
 	private int x;
 	private int y;
-	
+	private char keychar;
+
 	public Protagonist() {
 		image = new ImageIcon("./static/test.png");
-		image.setImage(image.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
-		x= 350;
-		y= 400;
-		this.setLocation(x, y);
-		this.setSize(100, 100);
+		image.setImage(image.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
+		x = 3600;
+		y = 2400;
+		individual = new IndividualModel(image);
+		individual.setLocation(x, y);
+		this.setLayout(null);
+		this.add(individual);
+		this.setBackground(null);
+		this.setOpaque(false);
+		this.setLocation(-3000, -2000);
+		this.setSize(6000, 4000);
+		keychar = '\0';
 	}
-	
-	@Override
-	public void paint(Graphics g) {
-		super.paint(g);
-		g.drawImage(image.getImage(),0,0,null);	
+
+
+	public void run() {
+		if (keychar == 'w') {
+			y -= 10;
+		}
+		if (keychar == 's') {
+			y += 10;
+		}
+		if (keychar == 'a') {
+			x -= 10;
+		}
+		if (keychar == 'd') {
+			x += 10;
+		}
+		individual.setLocation(x, y);
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		char ch = e.getKeyChar();
-		if(ch == 'w') {
-			y-=20;
-		}
-		if(ch == 's') {
-			y+=20;
-		}
-		if(ch == 'a') {
-			x-=20;
-		}
-		if(ch == 'd') {
-			x+=20;
-		}
-		this.setLocation(x, y);
+		keychar = e.getKeyChar();
+		this.run();
 	}
 
 	@Override
@@ -56,5 +66,4 @@ public class Protagonist extends PersonUnit implements KeyListener{
 	@Override
 	public void keyReleased(KeyEvent e) {
 	}
-
 }

@@ -14,8 +14,8 @@ public class Main {
 		index.run();
 		index.setVisible(true);
 		FirstStage firststage = new FirstStage();
-		firststage.setVisible(false);
 		firststage.run();
+		firststage.setVisible(false);
 		while (true) {
 			try {
 				judgeCondition(index.getCondition());

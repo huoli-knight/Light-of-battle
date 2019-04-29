@@ -3,9 +3,10 @@ package com.huoli.FirstStage;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
@@ -14,15 +15,16 @@ import javax.swing.JPanel;
 import com.huoli.BaseJFrame.BaseJFrame;
 import com.huoli.Protagonist.Protagonist;
 
-@SuppressWarnings("serial")
-public class FirstStage extends BaseJFrame{
+public class FirstStage extends BaseJFrame  implements KeyListener {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6572666754041875676L;
 	private JPanel panelback;
-	private JPanel test;
 	private ImageIcon imageback;
 	private JLabel labelback;
 	private Protagonist protagonist;
-	private JButton te;
 
 	public FirstStage() {
 		super();
@@ -32,28 +34,25 @@ public class FirstStage extends BaseJFrame{
 		labelback = new JLabel(imageback);
 		lay = new JLayeredPane();
 		panelback = new JPanel();
+		panelback.setLayout(null);
 		
-		te = new JButton("11");
-		te.addActionListener(this);
-		test = new JPanel();
-		test.add(te);
-		test.setSize(400, 400);
-		test.setLocation(50, 50);
 		protagonist =new Protagonist();
+		
 		this.setFocusable(true);
+		this.addKeyListener(this);
 		this.addKeyListener(protagonist);
 		this.setVisible(false);
 	}
 
 	@Override
 	public void run() {
+		protagonist.run();
 		setimageback();
 		setpanelback();
 		setlabelback();
 		panelback.add(labelback);
 		this.setLayeredPane(lay);
 		lay.add(panelback, JLayeredPane.DEFAULT_LAYER);
-		lay.add(test, JLayeredPane.PALETTE_LAYER);
 		lay.add(protagonist, JLayeredPane.POPUP_LAYER);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
@@ -63,11 +62,12 @@ public class FirstStage extends BaseJFrame{
 	}
 	
 	private void setlabelback() {
-		labelback.setSize(800, 800);
+		labelback.setSize(1200, 800);
 	}
 	
 	private void setpanelback() {
-		panelback.setSize(800, 800);
+		panelback.setSize(1200, 800);
+		panelback.setLocation(0, 0);
 	}
 
 	@Override
@@ -98,6 +98,7 @@ public class FirstStage extends BaseJFrame{
 	public void resetCondition() {
 		condition = 0;
 	}
+
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -106,5 +107,26 @@ public class FirstStage extends BaseJFrame{
 			condition = 2;
 			this.setVisible(false);
 		}
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		char keychar = e.getKeyChar();
+		if (keychar == KeyEvent.VK_ESCAPE) {
+			System.exit(0);
+		}
+		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }
