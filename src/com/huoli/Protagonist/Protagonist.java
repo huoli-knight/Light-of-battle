@@ -30,7 +30,7 @@ public class Protagonist extends PersonUnit{
 		this.setBackground(null);
 		this.setOpaque(false);
 		this.setLocation(0, 0);
-		this.setSize(1200, 800);
+		this.setSize(1500, 1200);
 	}
 
 	public Point getIndividualLotcation() {

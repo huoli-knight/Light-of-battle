@@ -1,6 +1,5 @@
 package com.huoli.FirstStage;
 
-import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -23,22 +22,26 @@ public class FirstStage extends BaseJFrame implements KeyListener {
 	 * 
 	 */
 	private static final long serialVersionUID = 6572666754041875676L;
-	private JPanel panelback;
-	private ImageIcon imageback;
-	private JLabel labelback;
 	private Protagonist protagonist;
 	private FirstMap map;
 	private char keychar;
+	private JPanel panelback;
+	private ImageIcon imageback;
+	private JLabel labelback;
 
 	public FirstStage() {
 		super();
 		condition = 0;
-		this.setTitle("Light Of Battle");
-		imageback = new ImageIcon("./static/gameback (1).gif");
-		labelback = new JLabel(imageback);
-		lay = new JLayeredPane();
 		panelback = new JPanel();
+		imageback = new ImageIcon("./static/²ÝµØback.png");
+		labelback = new JLabel(imageback);
+		labelback.setLayout(null);
+		labelback.setSize(width, height);
+		panelback.add(labelback);
+		panelback.setSize(width, height);
 		panelback.setLayout(null);
+		this.setTitle("Light Of Battle");
+		lay = new JLayeredPane();
 		protagonist = new Protagonist();
 		map = new FirstMap();
 		this.setFocusable(true);
@@ -49,28 +52,11 @@ public class FirstStage extends BaseJFrame implements KeyListener {
 
 	@Override
 	public void run() {
-		setimageback();
-		setpanelback();
-		setlabelback();
-		panelback.add(labelback);
 		this.setLayeredPane(lay);
 		lay.add(panelback, JLayeredPane.DEFAULT_LAYER);
 		lay.add(map, JLayeredPane.PALETTE_LAYER);
 		lay.add(protagonist, JLayeredPane.POPUP_LAYER);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	}
-
-	private void setimageback() {
-		imageback.setImage(imageback.getImage().getScaledInstance(1200, 800, Image.SCALE_DEFAULT));
-	}
-
-	private void setlabelback() {
-		labelback.setSize(1200, 800);
-	}
-
-	private void setpanelback() {
-		panelback.setSize(1200, 800);
-		panelback.setLocation(0, 0);
 	}
 
 	@Override
@@ -116,17 +102,16 @@ public class FirstStage extends BaseJFrame implements KeyListener {
 		if (keychar == KeyEvent.VK_ESCAPE) {
 			System.exit(0);
 		}
-		Point p1 = map.getLabelLocation();
-		int rad1 = 150;
-		Point p2 = protagonist.getIndividualLotcation();
-		Point rad2 = new Point(34, 90);
+		
+
+		Point p = protagonist.getIndividualLotcation();
+		Point rad = new Point(34, 90);
 		// Åö×²¼ì²â
-		if (Collision.rectangleTesting(p1, rad1, p2, rad2)) {
+		if (Collision.mapTesting(map.getcollisionbool(), p, rad)) {
 			protagonist.run(keychar);
 
-			p1 = map.getLabelLocation();
-			p2 = protagonist.getIndividualLotcation();
-			if (Collision.rectangleTesting(p1, rad1, p2, rad2) == false) {
+			p = protagonist.getIndividualLotcation();
+			if (Collision.mapTesting(map.getcollisionbool(), p, rad) == false) {
 				if (keychar == 'w') {
 					keychar = 's';
 				} else if (keychar == 's') {

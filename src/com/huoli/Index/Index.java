@@ -74,22 +74,22 @@ public class Index extends BaseJFrame {
 	}
 	
 	private void setimageback() {
-		imageback.setImage(imageback.getImage().getScaledInstance(1200, 800, Image.SCALE_DEFAULT));
+		imageback.setImage(imageback.getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT));
 	}
 
 	private void setlabelback() {
-		labelback.setSize(1200, 800);
+		labelback.setSize(width, height);
 	}
 
 	private void setpanelmenu() {
 		panelmenu.setSize(100, 200);
-		panelmenu.setLocation(550, 200);
+		panelmenu.setLocation(650, 300);
 		panelmenu.setBackground(null);
 		panelmenu.setOpaque(false);
 	}
 
 	private void setpanelback() {
-		panelback.setSize(1200, 800);
+		panelback.setSize(width, height);
 	}
 
 	private void addButton() {
