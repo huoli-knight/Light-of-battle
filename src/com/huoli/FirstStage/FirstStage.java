@@ -12,17 +12,16 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
 import com.huoli.BaseJFrame.BaseJFrame;
-import com.huoli.Collision.Collision;
+import com.huoli.FirstIndivdual.FirstIndivdual;
 import com.huoli.FirstMap.FirstMap;
-import com.huoli.Protagonist.Protagonist;
 
 public class FirstStage extends BaseJFrame implements KeyListener {
 
 	/**
-	 * 
+	 * µÚÒ»¹Ø
 	 */
 	private static final long serialVersionUID = 6572666754041875676L;
-	private Protagonist protagonist;
+	private FirstIndivdual firstindivdual;
 	private FirstMap map;
 	private char keychar;
 	private JPanel panelback;
@@ -42,8 +41,12 @@ public class FirstStage extends BaseJFrame implements KeyListener {
 		panelback.setLayout(null);
 		this.setTitle("Light Of Battle");
 		lay = new JLayeredPane();
-		protagonist = new Protagonist();
 		map = new FirstMap();
+		firstindivdual = new FirstIndivdual();
+
+		Thread thread1 = new Thread(firstindivdual);
+		thread1.start();
+		
 		this.setFocusable(true);
 		this.addKeyListener(this);
 		this.setVisible(false);
@@ -55,7 +58,7 @@ public class FirstStage extends BaseJFrame implements KeyListener {
 		this.setLayeredPane(lay);
 		lay.add(panelback, JLayeredPane.DEFAULT_LAYER);
 		lay.add(map, JLayeredPane.PALETTE_LAYER);
-		lay.add(protagonist, JLayeredPane.POPUP_LAYER);
+		lay.add(firstindivdual, JLayeredPane.POPUP_LAYER);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
@@ -103,27 +106,7 @@ public class FirstStage extends BaseJFrame implements KeyListener {
 			System.exit(0);
 		}
 		
-
-		Point p = protagonist.getIndividualLotcation();
-		Point rad = new Point(34, 90);
-		// Åö×²¼ì²â
-		if (Collision.mapTesting(map.getcollisionbool(), p, rad)) {
-			protagonist.run(keychar);
-
-			p = protagonist.getIndividualLotcation();
-			if (Collision.mapTesting(map.getcollisionbool(), p, rad) == false) {
-				if (keychar == 'w') {
-					keychar = 's';
-				} else if (keychar == 's') {
-					keychar = 'w';
-				} else if (keychar == 'a') {
-					keychar = 'd';
-				} else if (keychar == 'd') {
-					keychar = 'a';
-				}
-				protagonist.run(keychar);
-			}
-		}
+		firstindivdual.dealWithKeychar(keychar, map.getcollisionbool());
 
 	}
 

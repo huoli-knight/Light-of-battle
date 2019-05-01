@@ -5,10 +5,12 @@ import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-public class IndividualModel extends JLabel {
+import com.huoli.ExpandInterface.IndividualInerface.IndividualInerface;
+
+public abstract class IndividualModel extends JLabel  implements Runnable, IndividualInerface {
 
 	/**
-	 * 
+	  *可以移动的生命模型 
 	 */
 	private static final long serialVersionUID = -7709488188366780720L;
 

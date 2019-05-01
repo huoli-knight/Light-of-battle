@@ -55,6 +55,7 @@ public class Index extends BaseJFrame {
 		setimageback();
 		setlabelback();
 		panelback.add(labelback);
+		panelback.setLayout(null);
 		lay.add(panelback, JLayeredPane.DEFAULT_LAYER);
 		lay.add(panelmenu, JLayeredPane.MODAL_LAYER);
 		setpanelmenu();

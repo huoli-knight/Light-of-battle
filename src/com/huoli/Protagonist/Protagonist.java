@@ -1,6 +1,5 @@
 package com.huoli.Protagonist;
 
-import java.awt.Image;
 import java.awt.Point;
 
 import javax.swing.ImageIcon;
@@ -8,48 +7,60 @@ import javax.swing.ImageIcon;
 import com.huoli.IndividualModel.IndividualModel;
 import com.huoli.PersonUnit.PersonUnit;
 
-public class Protagonist extends PersonUnit{
+public class Protagonist extends PersonUnit implements Runnable{
 
 	/**
-	 * 
+	 * 主角
 	 */
 	private static final long serialVersionUID = 1140812889168316062L;
-	private ImageIcon image;
-	private int x;
-	private int y;
+	
+	//TODO 私有以后在修改
+	public static int x;
+	public static int y;
+	protected IndividualModel archer;
+	
 
-	public Protagonist() {
-		image = new ImageIcon("./static/关羽.png");
-		image.setImage(image.getImage().getScaledInstance(34, 90, Image.SCALE_DEFAULT));
+	public Protagonist(ImageIcon image, int startx, int starty) {
+		super(image, startx, starty);
 		x = 600;
 		y = 400;
-		individual = new IndividualModel(image,68/2,180/2);
-		individual.setLocation(x, y);
-		this.setLayout(null);
-		this.add(individual);
+		super.setLocation(x, y);
 		this.setBackground(null);
-		this.setOpaque(false);
-		this.setLocation(0, 0);
-		this.setSize(1500, 1200);
+		super.setOpaque(false);
 	}
+	
 
 	public Point getIndividualLotcation() {
-		return individual.getLocation();
+		return this.getLocation();
 	}
 
-	public void run(char keychar) {
-		if (keychar == 'w') {
+	public void dealWithKeychar(char keychar) {
+		if (keychar == 'w' || keychar == 'W') {
 			y -= 5;
 		}
-		if (keychar == 's') {
+		if (keychar == 's' || keychar == 'S') {
 			y += 5;
 		}
-		if (keychar == 'a') {
+		if (keychar == 'a' ||keychar == 'A') {
 			x -= 5;
 		}
-		if (keychar == 'd') {
+		if (keychar == 'd' || keychar == 'D') {
 			x += 5;
 		}
-		individual.setLocation(x, y);
+		this.run();
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		this.setLocation(x, y);
+		
+	}
+
+
+	@Override
+	public void bloodStrip() {
+		// TODO Auto-generated method stub
+		
 	}
 }
