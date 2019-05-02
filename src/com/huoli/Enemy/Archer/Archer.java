@@ -4,10 +4,10 @@ import java.awt.Point;
 
 import javax.swing.ImageIcon;
 
-import com.huoli.Collision.Collision;
 import com.huoli.FirstMap.FirstMap;
 import com.huoli.PersonUnit.PersonUnit;
 import com.huoli.Protagonist.Protagonist;
+import com.huoli.Testing.Collision;
 
 public class Archer extends PersonUnit{
 
@@ -19,7 +19,6 @@ public class Archer extends PersonUnit{
 
 	public Archer(ImageIcon image, int x, int y) {
 		super(image, x, y);
-		// TODO Auto-generated constructor stub
 		super.setLocation(300, 100);
 		this.setBackground(null);
 		super.setOpaque(false);
@@ -32,6 +31,9 @@ public class Archer extends PersonUnit{
 
 	@Override
 	public void run() {
+		Point p;
+		int x;
+		int y;
 		for (; true;) {
 			try {
 				Thread.sleep(100);
@@ -40,9 +42,9 @@ public class Archer extends PersonUnit{
 				e.printStackTrace();
 			}
 
-			Point p = this.getLocation();
-			int x = p.x;
-			int y = p.y;
+			p = this.getLocation();
+			x = p.x;
+			y = p.y;
 			if (p.x - 5 < Protagonist.x && Protagonist.x < p.x + 5) {
 				weap = true;
 				continue;
@@ -54,15 +56,10 @@ public class Archer extends PersonUnit{
 			}
 
 			Point rad = new Point(this.getWidth(), this.getHeight());
-			if (Collision.mapTesting(FirstMap.collisionbool, p, rad)) {
+			if (Collision.mapTesting(FirstMap.collisionbool, new Point(x,y), rad)) {
 				this.setLocation(x, y);
-				p = this.getLocation();
-				if (Collision.mapTesting(FirstMap.collisionbool, p, rad) == false) {
-					this.setLocation(p);
-				}
 			}
 		}
-
 	}
 
 	@Override

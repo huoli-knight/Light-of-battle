@@ -6,9 +6,10 @@ import java.awt.Point;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 
-import com.huoli.Collision.Collision;
+import com.huoli.FirstIndivdual.FirstIndivdual;
 import com.huoli.FirstMap.FirstMap;
 import com.huoli.Protagonist.Protagonist;
+import com.huoli.Testing.Collision;
 
 public class Weapon extends JLabel implements Runnable {
 
@@ -16,6 +17,7 @@ public class Weapon extends JLabel implements Runnable {
 	 * ÔÝÊ±µÄ×Óµ¯
 	 */
 	private static final long serialVersionUID = -6674094113134598710L;
+	public static boolean bo;
 
 	public Weapon() {
 		super();
@@ -53,25 +55,31 @@ public class Weapon extends JLabel implements Runnable {
 		} else {
 			judge = 3;
 		}
+		
+		int x = p.x;
+		int y = p.y;
 		for (; true;) {
 			try {
 				Thread.sleep(100);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-
-			if (Collision.mapTesting(FirstMap.collisionbool, p, rad)) {
-				if (judge == 1) {
-					p.y -= 10;
-				} else {
-					p.y += 10;
-				}
-				this.setLocation(p);
-				p = this.getLocation();
-				if (Collision.mapTesting(FirstMap.collisionbool, p, rad) == false) {
-					break;
-				}
+			x = p.x;
+			y = p.y;
+			if (judge == 1) {
+				p.y -= 10;
+			} else {
+				p.y += 10;
 			}
+			if (Collision.rectangleTesting(new Point(Protagonist.x,Protagonist.y), Protagonist.p, p, rad) == false) {
+				FirstIndivdual.bloodpro -= 5;
+				break;
+			}
+			if (Collision.mapTesting(FirstMap.collisionbool, p, rad) == false) {
+				this.setLocation(x, y);
+					break;
+			}
+			this.setLocation(p);
 		}
 		super.setVisible(false);
 	}

@@ -1,8 +1,12 @@
-package com.huoli.Collision;
+package com.huoli.Testing;
 
 import java.awt.Point;
 
 public class Collision {
+	
+	/*
+	 * Åö×²¼ì²â
+	 */
 
 	public static boolean mapTesting(boolean[][] collisiontest, Point p, Point rad) {
 		for (int y = 0; rad.y - 50 * y >= 0; y++) {
@@ -44,5 +48,6 @@ public class Collision {
 		}
 		return false;
 	}
+	
 
 }

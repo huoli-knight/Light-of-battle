@@ -21,10 +21,6 @@ public class FirstMap extends BaseMap {
 		this.setLocation(0, 0);
 		this.setSize(width, height);
 	}
-	
-	public boolean[][] getcollisionbool(){
-		return this.collisionbool;
-	}
 
 	public void charting() {
 		this.setLabel();

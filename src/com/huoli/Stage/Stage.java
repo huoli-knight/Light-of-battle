@@ -1,4 +1,4 @@
-package com.huoli.FirstStage;
+package com.huoli.Stage;
 
 import java.awt.Point;
 import java.awt.event.ActionEvent;
@@ -15,10 +15,10 @@ import com.huoli.BaseJFrame.BaseJFrame;
 import com.huoli.FirstIndivdual.FirstIndivdual;
 import com.huoli.FirstMap.FirstMap;
 
-public class FirstStage extends BaseJFrame implements KeyListener {
+public class Stage extends BaseJFrame implements KeyListener {
 
 	/**
-	 * 第一关
+	 * 关卡选择界面
 	 */
 	private static final long serialVersionUID = 6572666754041875676L;
 	private FirstIndivdual firstindivdual;
@@ -28,7 +28,7 @@ public class FirstStage extends BaseJFrame implements KeyListener {
 	private ImageIcon imageback;
 	private JLabel labelback;
 
-	public FirstStage() {
+	public Stage() {
 		super();
 		condition = 0;
 		panelback = new JPanel();
@@ -53,8 +53,8 @@ public class FirstStage extends BaseJFrame implements KeyListener {
 		keychar = '\0';
 	}
 
-	@Override
-	public void run() {
+	//@Override
+	public void run1() {
 		this.setLayeredPane(lay);
 		lay.add(panelback, JLayeredPane.DEFAULT_LAYER);
 		lay.add(map, JLayeredPane.PALETTE_LAYER);
@@ -106,7 +106,7 @@ public class FirstStage extends BaseJFrame implements KeyListener {
 			System.exit(0);
 		}
 		
-		firstindivdual.dealWithKeychar(keychar, map.getcollisionbool());
+		firstindivdual.dealWithKeychar(keychar, FirstMap.collisionbool);
 
 	}
 

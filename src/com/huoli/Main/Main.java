@@ -3,18 +3,18 @@ package com.huoli.Main;
 import java.awt.Point;
 
 import com.huoli.Exception.ConditionException.ConditionException;
-import com.huoli.FirstStage.FirstStage;
 import com.huoli.Index.Index;
+import com.huoli.Stage.Stage;
 
 public class Main {
 
 	public static void main(String[] args) {
 		Point p = new Point(500, 200);
 		Index index = new Index();
-		index.run();
+		index.run1();
 		index.setVisible(true);
-		FirstStage firststage = new FirstStage();
-		firststage.run();
+		Stage firststage = new Stage();
+		firststage.run1();
 		firststage.setVisible(false);
 		while (true) {
 			try {

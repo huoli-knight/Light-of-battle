@@ -2,15 +2,14 @@ package com.huoli.FirstIndivdual;
 
 import java.awt.Image;
 import java.awt.Point;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import com.huoli.Collision.Collision;
 import com.huoli.Enemy.Archer.Archer;
 import com.huoli.Protagonist.Protagonist;
+import com.huoli.Testing.Collision;
 import com.huoli.Weapon.Weapon;
 
 public class FirstIndivdual extends JPanel implements Runnable {
@@ -23,6 +22,7 @@ public class FirstIndivdual extends JPanel implements Runnable {
 	private ImageIcon protagonistimage;
 	private ImageIcon archerimage;
 	private Archer archerone;
+	public static int bloodpro = 100;
 
 	public FirstIndivdual() {
 		super();
@@ -41,6 +41,7 @@ public class FirstIndivdual extends JPanel implements Runnable {
 		thread2.start();
 
 		this.add(protagonist);
+		this.add(protagonist.getBlood());
 		this.add(archerone);
 		this.setLayout(null);
 		this.setSize(1400, 1000);
@@ -78,15 +79,24 @@ public class FirstIndivdual extends JPanel implements Runnable {
 	public void run() {
 //		List<Weapon> list = new ArrayList<Weapon>();
 //		List<Thread> list2 = new ArrayList<Thread>();
-		
+
 		for (int i = 0; true;) {
+			if (bloodpro <= 0) {
+				int res = JOptionPane.showConfirmDialog(null, "选择是返回主菜单(暂时没实现))，选择否结束游戏", "是否继续",
+						JOptionPane.YES_NO_OPTION);
+				if (res == JOptionPane.YES_OPTION) {
+					System.exit(0);
+				} else {
+					System.exit(0);
+				}
+			}
+			protagonist.getBlood().setSize(bloodpro, 10);
 			if (i == 99) {
 				i = 0;
 			}
 			try {
 				Thread.sleep(10);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			if (Archer.weap) {
@@ -96,7 +106,7 @@ public class FirstIndivdual extends JPanel implements Runnable {
 				weap.setLocation(archerone.getLocation());
 				weap.setVisible(true);
 				this.add(weap);
-				Thread thead10 =new Thread(weap);
+				Thread thead10 = new Thread(weap);
 				thead10.start();
 				i++;
 				try {
@@ -104,7 +114,6 @@ public class FirstIndivdual extends JPanel implements Runnable {
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-//				System.out.println("你好！");
 			}
 		}
 	}

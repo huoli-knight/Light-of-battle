@@ -1,14 +1,14 @@
 package com.huoli.BaseJFrame;
 
+import java.awt.event.ActionListener;
+
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 
-import com.huoli.baseInterface.baseInterface;
-
-public abstract class BaseJFrame extends JFrame implements baseInterface {
+public abstract class BaseJFrame extends JFrame implements ActionListener  {
 	
 	/**
-	 * 
+	 *   JFrame ÈÝÆ÷µÄ»ù´¡
 	 */
 	private static final long serialVersionUID = 4821091674049273593L;
 	protected JLayeredPane lay;

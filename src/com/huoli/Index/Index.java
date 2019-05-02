@@ -48,8 +48,8 @@ public class Index extends BaseJFrame {
 		this.setVisible(false);
 	}
 
-	@Override
-	public void run() {
+	//@Override
+	public void run1() {
 		addButton();
 		setpanelback();
 		setimageback();
