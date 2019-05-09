@@ -4,7 +4,7 @@ import java.awt.Point;
 
 import com.huoli.Exception.ConditionException.ConditionException;
 import com.huoli.Index.Index;
-import com.huoli.Stage.Stage;
+import com.huoli.PreludeStage.PreludeStage;
 
 public class Main {
 
@@ -13,7 +13,7 @@ public class Main {
 		Index index = new Index();
 		index.run1();
 		index.setVisible(true);
-		Stage firststage = new Stage();
+		PreludeStage firststage = new PreludeStage();
 		firststage.run1();
 		firststage.setVisible(false);
 		while (true) {
