@@ -1,7 +1,9 @@
 package com.huoli.Index;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Image;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 
 import javax.swing.ImageIcon;
@@ -12,61 +14,144 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
 import com.huoli.BaseJFrame.BaseJFrame;
-import com.huoli.Menu.Menu;
 
-@SuppressWarnings("serial")
 public class Index extends BaseJFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7854297246908650828L;
 	private ImageIcon imageback;
-	private JPanel panelone;
+	private JPanel panelmenu;
 	private JPanel panelback;
-	private JLabel back;
+	private JLabel labelback;
 	private JButton enterbutton;
-	private JButton button;
+	private JButton readbutton;
+	private JButton exitbutton;
+	private JButton presskeybutton;
+	private JButton imformationbutton;
 
 	public Index() {
-		this.setTitle("Index");
+		super();
+		condition = 0;
+		this.setTitle("Light Of Battle");
 		lay = new JLayeredPane();
-		panelone = new JPanel();
+		panelmenu = new JPanel();
 		panelback = new JPanel();
 		imageback = new ImageIcon("./static/indexback.gif");
-		back = new JLabel(imageback);
-		enterbutton = new JButton("进入");
-		button = new JButton("开始游戏");
+		labelback = new JLabel(imageback);
+		enterbutton = new JButton("开始游戏");
+		readbutton = new JButton("读取存档");
+		presskeybutton = new JButton("按键设置");
+		imformationbutton = new JButton("相关信息");
+		exitbutton = new JButton("退出游戏");
+		this.setVisible(false);
 	}
 
-	public void run() {
-		panelone.add(enterbutton);
-		enterbutton.addActionListener(this);
-		imageback.setImage(imageback.getImage().getScaledInstance(800, 800, Image.SCALE_DEFAULT));
-		panelback.setSize(800,800);
-		back.setSize(800,800);
-		panelback.add(back);
-		button.setBackground(Color.yellow);
-		panelone.add(button);
-		button.addActionListener(this);
-		lay.add(panelback,JLayeredPane.DEFAULT_LAYER);
-		lay.add(panelone,JLayeredPane.MODAL_LAYER);
+	//@Override
+	public void run1() {
+		addButton();
+		setpanelback();
+		setimageback();
+		setlabelback();
+		panelback.add(labelback);
+		panelback.setLayout(null);
+		lay.add(panelback, JLayeredPane.DEFAULT_LAYER);
+		lay.add(panelmenu, JLayeredPane.MODAL_LAYER);
+		setpanelmenu();
 		this.setLayeredPane(lay);
-		panelone.setSize(100, 100);
-		panelone.setLocation(400,200);
-		this.setLayeredPane(lay);
-		this.setSize(800,800);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setLocation(500,200);
-		this.setResizable(false);
-		this.setVisible(true);
+	}
+	
+	@Override
+	public void setVisible(boolean vis) {
+		if (vis) {
+			condition = 1;
+		}
+		else {
+			condition = 0;
+		}
+		super.setVisible(vis);
+	}
+	
+	private void setimageback() {
+		imageback.setImage(imageback.getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT));
+	}
+
+	private void setlabelback() {
+		labelback.setSize(width, height);
+	}
+
+	private void setpanelmenu() {
+		panelmenu.setSize(100, 200);
+		panelmenu.setLocation(650, 300);
+		panelmenu.setBackground(null);
+		panelmenu.setOpaque(false);
+	}
+
+	private void setpanelback() {
+		panelback.setSize(width, height);
+	}
+
+	private void addButton() {
+		enterbutton.setPreferredSize(new Dimension(100, 30));
+		enterbutton.setBackground(Color.yellow);
+		panelmenu.add(enterbutton);
+		enterbutton.addActionListener(this);
+		readbutton.setPreferredSize(new Dimension(100, 30));
+		readbutton.setBackground(Color.yellow);
+		panelmenu.add(readbutton);
+		readbutton.addActionListener(this);
+		presskeybutton.setBackground(Color.yellow);
+		presskeybutton.setPreferredSize(new Dimension(100, 30));
+		panelmenu.add(presskeybutton);
+		presskeybutton.addActionListener(this);
+		imformationbutton.setBackground(Color.yellow);
+		imformationbutton.setPreferredSize(new Dimension(100, 30));
+		panelmenu.add(imformationbutton);
+		imformationbutton.addActionListener(this);
+		exitbutton.setBackground(Color.yellow);
+		exitbutton.setPreferredSize(new Dimension(100, 30));
+		panelmenu.add(exitbutton);
+		exitbutton.addActionListener(this);
+	}
+	
+	public int getCondition() {
+		return condition;
+	}
+	
+	public void resetCondition() {
+		condition = 0;
+	}
+	
+	@Override
+	public Point getLocation() {
+		return super.getLocation();
+	}
+	
+	@Override
+	public void setLocation(Point p) {
+		super.setLocation(p);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String state = e.getActionCommand();
-		if (state.equals("进入")) {
-		}
-		else {
+		if (state.equals("开始游戏")) {
+			condition = 2;
 			this.setVisible(false);
-			Menu next = new Menu();
-			next.run();
+		}
+		if (state.equals("读取存档")) {
+
+		}
+		if (state.equals("按键设置")) {
+
+		}
+		if (state.equals("相关信息")) {
+
+		}
+		if (state.equals("退出游戏")) {
+			System.exit(0);
 		}
 	}
 
